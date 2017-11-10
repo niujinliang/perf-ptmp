@@ -1,0 +1,32 @@
+[
+  {
+    "uri": "/index",
+    "title": "服务器管理",
+    "permission": "",
+    "icon": "fa fa-server"
+  },
+  {
+    "uri": "/standard",
+    "title": "性能指标",
+    "permission": "",
+    "icon": "fa fa-thumbs-up"
+  },
+  {
+    "uri": "/serverSelection",
+    "title": "测试服务器选型",
+    "permission": "",
+    "icon": "fa fa-thumbs-up"
+  },
+  {
+    "uri": "/capacity",
+    "title": "线上系统容量评估",
+    "permission": "",
+    "icon": "fa fa-database"
+  },
+  {
+    "uri": "/baseline",
+    "title": "性能基线管理",
+    "permission": "",
+    "icon": "fa fa-database"
+  }
+]

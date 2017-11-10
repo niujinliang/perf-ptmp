@@ -1,0 +1,100 @@
+<div class="col-lg-2 col-md-2 col-xs-2 hidden-sm hidden-xs  side-menu">
+    <nav class="">
+        <div class="panel-group" id="accordion">
+            <div class="panel no-border">
+                <div class="panel-heading panel-heading-user">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                           class="collapsed">订单管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="
+                -collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body panel-body-user">
+                        <ul class="nav nav-stacked">
+                            <li><a href="/orderDashboard"><span class="glyphicon glyphicon-dashboard pull-left"></span>订单大盘</a>
+                            </li>
+                            <li><a href="/addOrder"><span
+                                    class="glyphicon glyphicon-dashboard pull-left"></span>新增订单</a>
+                            </li>
+                            <li><a href="/index"><span class="glyphicon glyphicon-dashboard pull-left"></span>查询订单</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-group" id="accordion">
+            <div class="panel no-border">
+                <div class="panel-heading panel-heading-user">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                           class="collapsed">订单调度<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body panel-body-user">
+                        <ul class="nav nav-stacked">
+                            <li><a href="/addServer"><span
+                                    class="glyphicon glyphicon-dashboard pull-left"></span>新增订单</a>
+                            </li>
+                            <li><a href="/index"><span class="glyphicon glyphicon-dashboard pull-left"></span>查询订单</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="panel-group" id="accordion">
+                <div class="panel no-border">
+                    <div class="panel-heading panel-heading-user">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                               class="collapsed">订单分配<span
+                                    class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body panel-body-user">
+                            <ul class="nav nav-stacked">
+                                <li><a href="/orderDashboard"><span
+                                        class="glyphicon glyphicon-dashboard pull-left"></span>新增订单</a>
+                                </li>
+                                <li><a href="/addServer"><span class="glyphicon glyphicon-dashboard pull-left"></span>新增订单</a>
+                                </li>
+                                <li><a href="/index"><span
+                                        class="glyphicon glyphicon-dashboard pull-left"></span>查询订单</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel no-border">
+                    <div class="panel-heading panel-heading-user">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false"
+                               class="collapsed">订单协作<span
+                                    class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body panel-body-user">
+                            <ul class="nav nav-stacked">
+                                <li><a href="/addServer"><span class="glyphicon glyphicon-dashboard pull-left"></span>新增订单</a>
+                                </li>
+                                <li><a href="/index"><span
+                                        class="glyphicon glyphicon-dashboard pull-left"></span>查询订单</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

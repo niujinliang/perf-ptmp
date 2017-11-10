@@ -1,0 +1,92 @@
+
+body {
+    background: #f3f3f4;
+}
+
+.wrapper {
+    background: #F4F5F9;
+}
+
+
+.nav-header {
+    background: #F43531;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    white-space: nowrap;
+    background-image: url(https://si.geilicdn.com/hz_img_12d3000001589b739e250a02685e_256_256_unadjust.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+// background-position: 5px 0;
+}
+
+.nav-header span {
+    margin-left: 40px;
+}
+
+.no-border {
+    border: 0px;
+    background: #F4F5F9
+}
+
+.panel-heading-user {
+    letter-spacing: 1px;
+}
+
+.panel-body-user {
+    padding: 10px;
+    border-top: 0px!important;
+    text-align: center;
+    color: #eee;
+}
+
+.panel-body-user a {
+    color: #666666;
+}
+
+.panel-body-user > ul > li > a:hover,.panel-body-user > ul > li > a:focus {
+    color: #F74040;
+}
+
+.page-wrapper {
+    background: #fff;
+    min-height: 1320px;
+}
+
+.page-title {
+    overflow: hidden;
+    padding-left: 15px;
+}
+
+.content-wrapper {
+    background: #fff;
+}
+
+.chart-circle {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.box {
+    margin-top: 15px;
+    border-top: 5px solid #C9D0D0;
+    background: #fbfbfb;
+}
+
+.btn-vdian {
+    border-color: #E5312D;
+    background: #F43531;
+    color: #fff
+}
+
+.btn-vdian:hover {
+    color: #fff;
+    background-color: #D62D29;
+    border-color: #BF2623;
+}
+
+.collapsed .glyphicon-chevron-down:before {
+    content: "\e080"
+}

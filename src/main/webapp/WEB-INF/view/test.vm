@@ -1,0 +1,215 @@
+<style>
+
+    .side-menu {
+        background: #f8f8f8;
+        float: left;
+        padding: 10px 0 30px;
+        position: fixed;
+        top: 51px;
+        bottom: 5px;
+        left: 5px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-width: 200px;
+    }
+
+    .content-body {
+        background: white;
+        position: fixed;
+        /*top: 50px;*/
+        /*bottom: 0;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+
+    #parse("list.vm")
+
+<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-xs-10 col-xs-offset-2 content-body">
+
+    #set($pageTitle="应用列表")
+
+    #if ($pager)
+        #set($pageFirst=$pager.getFirstPage())
+        #set($pageEnd=$pager.getLastPage())
+        #set($pagePrevious=$pager.getPreviousPage())
+        #set($pageNext = $pager.getNextPage())
+    #else
+        #set($pageFirst=1)
+        #set($pageEnd=1)
+        #set($pagePrevious=1)
+        #set($pageNext =1)
+    #end
+
+    <div class="row">
+        <div class="page-header" style="margin: 20px 10px">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">应用名</span>
+                                <select id="appNameSelect" class="form-control dropdown-toggle">
+                                    #foreach($scopeName in $scopeNameList)
+                                        <option value="$!{scopeName}">$!{scopeName}</option>
+                                    #end
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <button id="search" class="btn btn-primary">查询</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="add" class="btn btn-primary">新增应用</button>
+                        </div>
+
+
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN SAMPLE TABLE PORTLET-->
+                            <div class="portlet box red">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-cogs"></i>应用列表
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-bordered table-advance table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    应用名
+                                                </th>
+                                                <th>
+                                                    申请人
+                                                </th>
+                                                <th>
+                                                    描述
+                                                </th>
+                                                <th>
+                                                    创建时间
+                                                </th>
+                                                <th>
+                                                    更新时间
+                                                </th>
+                                                <th>
+                                                    操作
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                #foreach($scopeDo in $scopeDoList)
+                                                <tr>
+                                                    <td nowrap class="moreDetail">
+                                                        $!{scopeDo.scopeName}
+                                                    </td nowrap>
+                                                    <td nowrap class="moreDetail">
+                                                        $!{scopeDo.scopeCreator}
+                                                    </td nowrap>
+                                                    <td nowrap class="moreDetail">
+                                                        $!{scopeDo.desc}
+                                                    </td nowrap>
+                                                    <td nowrap class="moreDetail">
+                                                        $!{scopeDo.createTime}
+                                                    </td nowrap>
+                                                    <td nowrap class="moreDetail">
+                                                        $!{scopeDo.updateTime}
+                                                    </td nowrap>
+                                                    <td>
+                                                        <a href="javascript:;" class="btn default btn-xs purple edit"
+                                                           data-id="${scopeDo.id}"
+                                                           data-sn="${scopeDo.scopeName}"
+                                                           data-desc="${scopeDo.desc}">
+                                                            <i class="fa fa-edit"></i> 修改 </a>
+                                                        <a href="javascript:;" class="btn default btn-xs red delete"
+                                                           data-id="${scopeDo.id}">
+                                                            <i class="fa fa-delete"></i> 删除 </a>
+                                                    </td>
+                                                </tr>
+                                                #end
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <table width="100%" border="0">
+                                        <tr>
+                                            <td width="98%" height="43" align="right">
+                                                #if ($pager)
+                                                    总 $pager.getRowCount() 条
+                                                    第 $pager.getCurrentPage()/$pager.getPageCount() 页
+                                                #else
+                                                    总 0 条
+                                                    第 0 页
+                                                #end
+                                                <a href="#$pageFirst" onclick="goto($pageFirst)">首页</a>
+                                                <a href="#$pagePrevious" onclick="goto($pagePrevious)">上一页</a>
+                                                <a href="#$pageNext" onclick="goto($pageNext)">下一页</a>
+                                                <a href="#$pageEnd" onclick="goto($pageEnd)">末页</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE TABLE PORTLET-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="currentUrl" value="$!{urlBuilder.getUrlClean()}">
+
+        <script type="text/javascript">
+            $("#add").click(function () {
+                var targetUrl = "/addApplication";
+                window.location.href = targetUrl;
+            });
+
+            $(".delete").click(function () {
+
+                var scopeId = $(this).data('id');
+                var targetUrl = "/deleteApplication?id=" + scopeId
+                window.location.href = targetUrl;
+
+
+            });
+
+            $(".edit").click(function () {
+                var scopeId = $(this).data('id');
+                var scopeName = $(this).data('sn');
+                var desc = $(this).data('desc');
+                var targetUrl = "/editApplication?id=" + scopeId + "&scopeName=" + scopeName + "&desc=" + desc;
+                console.log(targetUrl);
+                window.location.href = targetUrl;
+            });
+            $("#search").click(function () {
+                var scopeName = $("#appNameSelect")[0].value;
+
+                if (scopeName == "") {
+                    alert("请选择appName");
+                    return;
+                }
+                //计算出相差天数
+                var targetUrl = $("#currentUrl")[0].value;
+                var append = "";
+                append += "&scopeName=" + scopeName;
+                targetUrl += "?" + append.substring(1);
+
+                window.location.href = targetUrl;
+            });
+        </script>
+
+
+
+

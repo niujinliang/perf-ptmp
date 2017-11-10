@@ -1,0 +1,37 @@
+#set($pageTitle="订单大盘")
+
+#parse("list.vm")
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat blue-madison">
+            <div class="visual">
+                <i class="fa fa-cloud"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    $!{undelivery}
+                </div>
+                <div class="desc">未发货订单数量</div>
+            </div>
+        ##            <a class="more" href="/api/list">
+        ##                查看所有 <i class="m-icon-swapright m-icon-white"></i>
+        ##            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="dashboard-stat red-intense">
+            <div class="visual">
+                <i class="fa fa-bar-chart-o"></i>
+            </div>
+            <div class="details">
+                <div class="number">
+                    $!{deliveried}
+                </div>
+                <div class="desc">已发货订单数量</div>
+            </div>
+        ##            <a class="more" href="/api/list">
+        ##                查看所有 <i class="m-icon-swapright m-icon-white"></i>
+        ##            </a>
+        </div>
+    </div>

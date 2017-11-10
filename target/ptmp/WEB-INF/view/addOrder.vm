@@ -1,0 +1,87 @@
+###set($pageTitle = "新增服务器")
+#parse("list.vm")
+<div class="page-header"></div>
+<div class="portlet box red">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>新增订单
+        </div>
+    </div>
+</div>
+<div class="wrap">
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label">
+                订单名称</label>
+
+            <div class="controls">
+                <input id="orderName" value="" type="text" placeholder="必填项" class="input-xlarge" required>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                订单描述</label>
+
+            <div class="controls">
+                <input id="orderDesc" value="" type="text" placeholder="必填项" class="input-xlarge" required>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                订单状态</label>
+
+            <div class="controls">
+                <select id="orderStatus" class="form-control dropdown-toggle">
+                    <option value ="deliveried">deliveried</option>
+                    <option value ="undelivery">undelivery</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="control-group">
+        <div class="controls">
+            <button id="submit" class="btn btn-primary">提交</button>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="currentUrl" value="$!{currentUrl}">
+<script type="text/javascript">
+
+    jQuery(document).ready(function () {
+
+        $("#submit").click(function () {
+            var orderName = $("#orderName")[0].value;
+//            var appName = $("#appName")[0].value;
+//            var apply = $("#apply")[0].value;
+            var orderDesc = $("#orderDesc")[0].value;
+            var orderStatus = $("#orderStatus")[0].value;
+            if (orderName == "") {
+                alert("请输入订单名称");
+                return;
+            }
+            if (orderDesc == "") {
+                alert("请输入订单描述");
+                return;
+            }
+
+            if (orderStatus == "") {
+                alert("请选择订单状态");
+                return;
+            }
+
+            var append = "";
+            append += "&orderName=" + orderName;
+            append += "&orderDesc=" + orderDesc;
+            append += "&orderStatus=" + orderStatus;
+
+            debugger;
+            var targetUrl = $("#currentUrl")[0].value;
+            targetUrl += "?" + append.substring(1);
+
+            window.location.href = targetUrl;
+        });
+    })
+</script>

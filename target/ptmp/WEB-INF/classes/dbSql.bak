@@ -1,0 +1,27 @@
+ use test
+ DROP TALBE server_info;
+ CREATE TABLE `server_info` (
+   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+   `ipaddress` varchar(255) NOT NULL,
+   `appname` varchar(50) DEFAULT NULL,
+   `apply` varchar(50) DEFAULT NULL,
+   `description` varchar(50) DEFAULT NULL,
+   `applyTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   `status` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8
+
+  INSERT INTO `server_info` (`id`, `ipaddress`, `appname`, `apply`, `description`, `applyTime`, `status`)
+VALUES
+	(1, '10.1.1.1', 'test', 'tesla', 'ddd', '2015-12-02 17:35:55', 'using'),
+	(2, '10.1.1.2', 'test', 'tesla', 'ddd', '2015-12-02 17:35:57', 'buffer');
+
+
+ CREATE TABLE `order_info` (
+   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+   `orderName` varchar(255) NOT NULL,
+   `orderDesc` varchar(500) DEFAULT NULL,
+   `applyTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   `status` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;

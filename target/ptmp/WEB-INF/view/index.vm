@@ -1,0 +1,229 @@
+<style>
+
+    .side-menu {
+        background: #f8f8f8;
+        float: left;
+        padding: 10px 0 30px;
+        position: fixed;
+        top: 51px;
+        bottom: 5px;
+        left: 5px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-width: 200px;
+    }
+
+    .content-body {
+        background: white;
+        position: fixed;
+        /*top: 50px;*/
+        /*bottom: 0;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+</style>
+
+#parse("list.vm")
+
+<div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-xs-10 col-xs-offset-2 content-body">
+
+
+
+#set($pageTitle="服务器管理")
+
+#if ($pager)
+    #set($pageFirst=$pager.getFirstPage())
+    #set($pageEnd=$pager.getLastPage())
+    #set($pagePrevious=$pager.getPreviousPage())
+    #set($pageNext = $pager.getNextPage())
+#else
+    #set($pageFirst=1)
+    #set($pageEnd=1)
+    #set($pagePrevious=1)
+    #set($pageNext =1)
+#end
+
+<div class="row">
+
+    <div class="page-header" style="margin-top: 10px">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">订单状态</span>
+                            <select id="orderStatus" class="form-control dropdown-toggle">
+                                <option  value="deliveried">deliveried</option>
+                                <option selected　value="undelivery">undelivery</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button id="search" class="btn btn-primary">查询</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- BEGIN SAMPLE TABLE PORTLET-->
+                        <div class="portlet box red">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-cogs"></i>订单状态(Status undelivery:未发货 deliveried:已发货)
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="table-scrollable">
+                                    <table class="table table-bordered table-advance table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                订单名称
+                                            </th>
+                                            <th>
+                                                订单描述
+                                            </th>
+                                            <th>
+                                                创建时间
+                                            </th>
+                                            <th>
+                                                订单状态
+                                            </th>
+                                            <th>
+                                                操作
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            #foreach($orderInfo in $pager.getArrayList())
+                                            <tr>
+                                                <td nowrap class="moreDetail">
+                                                    $!{orderInfo.orderName}
+                                                </td nowrap>
+                                                <td nowrap class="moreDetail">
+                                                    $!{orderInfo.orderDesc}
+                                                </td nowrap>
+                                                <td nowrap class="moreDetail">
+                                                    $!{orderInfo.applyTime}
+                                                </td nowrap>
+                                                <td nowrap class="moreDetail">
+                                                    $!{orderInfo.OrderStatus}
+                                                </td nowrap>
+                                                #if($orderInfo.OrderStatus=='undelivery')
+                                                    <td>
+                                                        <a href="javascript:;" class="btn default btn-xs purple send"
+                                                           data-id="${orderInfo.id}">
+                                                            <i class="fa fa-edit"></i> 发货 </a>
+                                                    </td>
+                                                #elseif($orderInfo.OrderStatus=='deliveried')
+                                                    <td nowrap>
+                                                    </td nowrap>
+                                                #end
+                                            </tr>
+                                            #end
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div>
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td width="98%" height="43" align="right">
+                                            #if ($pager)
+                                                总 $pager.getRowCount() 条
+                                                第 $pager.getCurrentPage()/$pager.getPageCount() 页
+                                            #else
+                                                总 0 条
+                                                第 0 页
+                                            #end
+                                            <a href="#$pageFirst" onclick="goto($pageFirst)">首页</a>
+                                            <a href="#$pagePrevious" onclick="goto($pagePrevious)">上一页</a>
+                                            <a href="#$pageNext" onclick="goto($pageNext)">下一页</a>
+                                            <a href="#$pageEnd" onclick="goto($pageEnd)">末页</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END SAMPLE TABLE PORTLET-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <input type="hidden" id="currentUrl" value="$!{urlBuilder.getUrlClean()}">
+
+        <script type="text/javascript">
+            function goto(arg_val) {
+                var url = window.location.href;
+                var arg = "currentPage";
+                window.location.href = changeURLArg(url, arg, arg_val);
+            }
+
+            function changeURLArg(url, arg, arg_val) {
+                var pattern = arg + '=([^&]*)';
+                var replaceText = arg + '=' + arg_val;
+                if (url.match(pattern)) {
+                    var tmp = '/(' + arg + '=)([^&]*)/gi';
+                    tmp = url.replace(eval(tmp), replaceText);
+                    return tmp;
+                } else {
+                    if (url.match('[\?]')) {
+                        return url + '&' + replaceText;
+                    } else {
+                        return url + '?' + replaceText;
+                    }
+                }
+                return url + '\n' + arg + '\n' + arg_val;
+            }
+
+            jQuery(document).ready(function ()
+            {
+                $(".send").click(function () {
+                    if (confirm("确认此订单发货吗？")) {
+
+                        var id = $(this).data('id');
+                        var oper = "undelivery";
+
+                        $.ajax({
+                            url: "/index?oper=" + oper + "&id=" + id,
+                                success: function (str) {
+//                            alert(str);
+                            window.location.reload();//刷新当前页面
+                            return;
+
+                        },
+                        error: function (str) {
+//                            alert(str);
+
+                        }
+                    });
+                } else {
+                return false;
+
+            }
+            });
+
+            $("#search").click(function () {
+                var orderStatus = $("#orderStatus")[0].value;
+
+                if (orderStatus == "") {
+                    alert("请选择对应状态订单");
+                    return;
+                }
+                //计算出相差天数
+                var targetUrl = $("#currentUrl")[0].value;
+                var append = "";
+                if (orderStatus != "") {
+                    append += "&orderStatus=" + orderStatus;
+                }
+                targetUrl += "?" + append.substring(1);
+
+                window.location.href = targetUrl;
+            });
+
+        })
+        </script>
